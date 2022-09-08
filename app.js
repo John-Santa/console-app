@@ -20,7 +20,7 @@ const main = async () => {
                 break;
             case '2':
                 // List tasks
-                console.log(tasks._tasks);
+                console.log(tasks.listArr);
                 break;
             case '3':
                 // List completed tasks
