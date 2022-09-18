@@ -20,4 +20,10 @@ export class Tasks {
         return list;
     }
 
+    loadTasksFromArray(tasks = []) {
+        tasks.forEach(task => {
+            this._tasks[task.id] = task;
+        });
+    }
+
 }
