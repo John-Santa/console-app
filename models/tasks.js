@@ -26,4 +26,15 @@ export class Tasks {
         });
     }
 
+    listCompleted() {
+
+        this.listArr.forEach(( task, i) => {
+            let idx = `${i + 1}. `.green;
+            let { description, completed } = task;
+            let state = (completed) ? 'Completada'.green : 'Pendiente'.red;
+            console.log(`${idx} ${description} :: ${state}`);
+        });
+
+    }
+
 }

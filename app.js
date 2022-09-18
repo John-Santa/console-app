@@ -28,7 +28,7 @@ const main = async () => {
                 console.log(tasks.listArr);
                 break;
             case '3':
-                // List completed tasks
+                tasks.listCompleted();
                 break;
             case '4':
                 // List pending tasks
