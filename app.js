@@ -31,10 +31,10 @@ const main = async () => {
                 tasks.listCompleted();
                 break;
             case '4':
-                // List pending tasks
+                tasks.listPendingsOrCompleted(false);
                 break;
             case '5':
-                // Complete task(s)
+                tasks.listPendingsOrCompleted(true);
                 break;
             case '6':
                 // Delete task

@@ -28,11 +28,27 @@ export class Tasks {
 
     listCompleted() {
 
+        console.log();
         this.listArr.forEach(( task, i) => {
             let idx = `${i + 1}. `.green;
-            let { description, completed } = task;
-            let state = (completed) ? 'Completada'.green : 'Pendiente'.red;
+            let { description, completedAt } = task;
+            let state = (completedAt) ? 'Completada'.green : 'Pendiente'.red;
             console.log(`${idx} ${description} :: ${state}`);
+        });
+
+    }
+
+    listPendingsOrCompleted( completed = true ) {
+
+        console.log();
+        let count = 0;
+        this.listArr.forEach(( task, i) => {
+            let { description, completedAt } = task;
+
+            if ( completed == Boolean(completedAt) ) {
+                count += 1;
+                console.log(`${(count + '.').green} ${description} :: ${completedAt}`);
+            }
         });
 
     }
