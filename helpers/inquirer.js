@@ -84,10 +84,7 @@ const readInput = async (message) => {
 }
 
 const listTasksToDelete = async ( tasks = [] ) => {
-    // {
-    //     value: task.id,
-    //     name: `${'1.'.green} Create task`
-    // },
+
     const choices = tasks.map( ( task, i) => {
 
         const idx = `${i + 1}.`.green;
@@ -130,10 +127,38 @@ const confirm = async ( message ) => {
 
 }
 
+
+const showCheckList = async ( tasks = [] ) => {
+
+    const choices = tasks.map( ( task, i) => {
+
+        const idx = `${i + 1}.`.green;
+
+        return {
+            value: task.id,
+            name: `${idx} ${task.description}`,
+            checked: (task.completedAt) ? true : false
+        }
+    });
+
+    const question = [
+        {
+            type: 'checkbox',
+            name: 'ids',
+            message: 'Select',
+            choices
+        }
+    ]
+
+    const { ids } = await inquirer.prompt(question);
+    return ids;
+}
+
 export {
     showMenu,
     pause,
     readInput,
     listTasksToDelete,
-    confirm
+    confirm,
+    showCheckList
 }

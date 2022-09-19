@@ -59,4 +59,21 @@ export class Tasks {
         }
     }
 
+    toggleTask( ids = [] ) {
+
+        ids.forEach( id => {
+            const task = this._tasks[id];
+            if ( !task.completedAt ) {
+                task.completedAt = new Date().toISOString();
+            }
+        });
+
+        this.listArr.forEach( task => {
+            if (!ids.includes(task.id)) {
+                this._tasks[task.id].completedAt = null;
+            }
+        })
+
+    }
+
 }

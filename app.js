@@ -1,5 +1,5 @@
 import colrs from 'colors';
-import { showMenu, pause, readInput, listTasksToDelete, confirm } from './helpers/inquirer.js';
+import { showMenu, pause, readInput, listTasksToDelete, confirm, showCheckList } from './helpers/inquirer.js';
 import { saveDB, readDB } from './helpers/persist.js';
 import { Tasks } from './models/tasks.js';
 
@@ -24,19 +24,24 @@ const main = async () => {
                 tasks.createTask(description);
                 break;
             case '2':
-                // List tasks
+                //List task
                 console.log(tasks.listArr);
                 break;
             case '3':
-                tasks.listCompleted();
+                //List completed tasks
+                tasks.listPendingsOrCompleted(true);
                 break;
             case '4':
+                //List pending tasks
                 tasks.listPendingsOrCompleted(false);
                 break;
             case '5':
-                tasks.listPendingsOrCompleted(true);
+                //Completed task(s)
+                const ids = await showCheckList( tasks.listArr );
+                tasks.toggleTask(ids)
                 break;
             case '6':
+                //Delete task
                 const id = await listTasksToDelete( tasks.listArr );
                 if (id != '0') {
                     const ok = await confirm('Are you sure?');
