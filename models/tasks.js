@@ -53,4 +53,10 @@ export class Tasks {
 
     }
 
+    deleteTask( id = '' ){
+        if(this._tasks[id]) {
+            delete this._tasks[id];
+        }
+    }
+
 }
